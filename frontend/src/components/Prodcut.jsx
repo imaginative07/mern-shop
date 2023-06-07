@@ -1,18 +1,19 @@
 import { Card } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 function Prodcut({prodcut}) {
   return (
     <Card>
-        <a href={`/product/${prodcut._id}`}>
+        <Link to={`/product/${prodcut._id}`}>
             <Card.Img src={prodcut.image} variant="top" />
-        </a>
+        </Link>
 
         <Card.Body>
-            <a href={`/product/${prodcut._id}`}>
+            <Link to={`/product/${prodcut._id}`}>
                 <Card.Title as="div">
                     <strong>{prodcut.name}</strong>
                 </Card.Title>
-            </a>
+            </Link>
 
             <Card.Text as="h3">
                 ${prodcut.price}
