@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { Rating } from "./Rating"; 
+import Rating  from "./Rating"; 
 
 function Prodcut({product}) {
   return (
@@ -11,7 +11,7 @@ function Prodcut({product}) {
 
         <Card.Body>
             <Link to={`/product/${product._id}`}>
-                <Card.Title as="div">
+                <Card.Title as="div" className="product-title">
                     <strong>{product.name}</strong>
                 </Card.Title>
             </Link>

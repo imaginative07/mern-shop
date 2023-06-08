@@ -14,7 +14,7 @@ function Rating({ value, text }) {
             { value >= 3 ? <FaStar /> : value >= 2.5 ? <FaStarHalf /> : <FaRegStar /> }
         </span>
         <span>
-            { value >= 4 ? <FaStar /> : value >= 3.5 ? <FaStarHalf /> : <FaRegStar /> } 1.5 ? <FaStarHalf /> : <FaRegStar /> }
+            { value >= 4 ? <FaStar /> : value >= 3.5 ? <FaStarHalf /> : <FaRegStar /> }
         </span>
         <span>
             { value >= 5 ? <FaStar /> : value >= 4.5 ? <FaStarHalf /> : <FaRegStar /> }
