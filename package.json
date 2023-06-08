@@ -1,0 +1,23 @@
+{
+  "name": "mern-shop",
+  "version": "1.0.0",
+  "description": "MERN Shop is E-commerce application built on MERN Stack.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imaginative07/mern-shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imaginative07/mern-shop/issues"
+  },
+  "homepage": "https://github.com/imaginative07/mern-shop#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
