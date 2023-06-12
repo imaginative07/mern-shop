@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/imaginative07/mern-shop#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "mongoose": "^7.2.3"
   },
