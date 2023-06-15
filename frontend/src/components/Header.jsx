@@ -26,7 +26,7 @@ const Header = () => {
                   <FaShoppingCart /> Cart
                   {cartItems.length > 0 && (
                     <Badge pill bg='success' style={{marginLeft:'5px'}}>
-                      { cartItems.reduce((acc, currentValue) => acc + currentValue.qty, 0) }
+                      { cartItems.reduce((acc, currentValue) => acc + Number(currentValue.qty), 0) }
                     </Badge>
                   )}
                 </Nav.Link>
