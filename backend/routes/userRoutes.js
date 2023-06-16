@@ -13,7 +13,7 @@ router.post('/login', asyncHandler( async (req, res) => {
 
     if(user && (await user.checkPassword(password)) ) {
 
-        const token = jwt.sing({ userId: user._id }, process.env.JWT_SECRET, {expiressIn: '30d'});
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {expiressIn: '30d'});
 
         //Set JWT as HTTP-Only cookie
         res.cookie('jwt', token, {
