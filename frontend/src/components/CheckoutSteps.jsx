@@ -16,7 +16,7 @@ function CheckoutSteps({ step1, step2, step3, step4 }) {
 
         <Nav.Item>
             {step2 ? (
-                <LinkContainer to="/shopping">
+                <LinkContainer to="/shipping">
                     <Nav.Link>Shipping</Nav.Link>
                 </LinkContainer>
             ) : (
