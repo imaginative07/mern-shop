@@ -58,8 +58,8 @@ router.get('/mine', protectRoute, asyncHandler( async (req, res) => {
 
 // @desc    Get order by id
 // @route   GET /api/orders/:id
-// @access  Private/Admin
-router.get('/:id', protectRoute, admin, asyncHandler( async (req, res) => {
+// @access  Private
+router.get('/:id', protectRoute, asyncHandler( async (req, res) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email');
 
     if(order) {
