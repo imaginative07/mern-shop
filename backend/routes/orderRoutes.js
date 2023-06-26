@@ -60,6 +60,7 @@ router.get('/mine', protectRoute, asyncHandler( async (req, res) => {
 // @route   GET /api/orders/:id
 // @access  Private
 router.get('/:id', protectRoute, asyncHandler( async (req, res) => {
+    
     const order = await Order.findById(req.params.id).populate('user', 'name email');
 
     if(order) {
@@ -68,6 +69,7 @@ router.get('/:id', protectRoute, asyncHandler( async (req, res) => {
         res.status(404);
         throw new Error('Order not found');
     }
+    
 }));
 
 // @desc    Update order to paid
@@ -101,8 +103,20 @@ router.put('/:id/pay', protectRoute, asyncHandler( async (req, res) => {
 // @route   PUT /api/orders/:id/deliver
 // @access  Private/Admin
 router.put('/:id/deliver', protectRoute, admin, asyncHandler( async (req, res) => {
-    res.send('Update order to delivered');
-    // res.status(200).json({ message: 'Logged out successfully' });
+    
+    const order = await Order.findById(req.params.id);
+    
+    if(order) {
+        
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+        const updateOrder = await order.save();
+        res.status(200).json(updateOrder);
+
+    } else {
+        res.status(404);
+        throw new Error('Order not found');
+    }
 
 }));
 
