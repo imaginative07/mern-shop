@@ -65,18 +65,19 @@ function ProfileScreen() {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} ></Form.Control>
                     </Form.Group>
-                    
+
+                    <Form.Group controlId="confirmPassword" className="my-2">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password" placeholder="Enter Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} ></Form.Control>
+                    </Form.Group>
+
                     <Button type="submit" variant="primary" className="my-2">Update</Button>
 
                     {loadingUpdateProfile && <Loader />}
 
-                    {/* <Form.Group controlId="confirmPassword" className="my-2">
-                        <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} ></Form.Control>
-                    </Form.Group> */}
                 </Form>
             </Col>
-            <Col md={6}>
+            <Col md={8}>
                 <h2>My Orders</h2>
                 {isLoading ? <Loader /> : error ? <Message variant="danger">{error?.data?.message || error}</Message> : (
                     <Table striped hover responsive className="table-sm">
