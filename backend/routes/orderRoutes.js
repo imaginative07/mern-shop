@@ -110,8 +110,8 @@ router.put('/:id/deliver', protectRoute, admin, asyncHandler( async (req, res) =
 // @route   GET /api/orders/
 // @access  Private/Admin
 router.get('/', protectRoute, admin, asyncHandler( async (req, res) => {
-    res.send('Get all orders');
-    // res.status(200).json({ message: 'Logged out successfully' });
+    const orders = await Order.find({}).populate('user', 'id name');
+    res.status(200).json(orders);
 
 }));
 
