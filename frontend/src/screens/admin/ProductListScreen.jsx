@@ -4,7 +4,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
-import { useGetProductQuery, useCreateProductMutation } from '../../slices/productApiSlice';
+import { useGetProductQuery, useCreateProductMutation, useDeleteProductMutation } from '../../slices/productApiSlice';
 
 
 function ProductListScreen() {
@@ -13,8 +13,18 @@ function ProductListScreen() {
 
     const [createProduct, { isLoading: LoadingCreate }] = useCreateProductMutation();
 
+    const [deleteProduct, { isLoading: LoadingDelete }] = useDeleteProductMutation();
+
     const deleteHandler = async (id) => {
-        console.log(id);
+        if(window.confirm('Are you sure?')) {
+            try {
+                await deleteProduct(id);
+                toast.success("Product deleted successfully");
+                refetch();
+            } catch (error) {
+                toast.error(error?.data?.message || error);
+            }
+        }
     }
 
     const createProductHandler = async () => {
@@ -27,17 +37,6 @@ function ProductListScreen() {
                 toast.error(error?.data?.message || error);
             }
         }
-
-        // const product = {
-        //     name: `Product ${products.length + 1}`,
-        //     price: Math.floor(Math.random() * 1000),
-        //     category: "test",
-        //     brand: "test",
-        //     countInStock: Math.floor(Math.random() * 100),
-        //     rating: Math.floor(Math.random() * 5),
-        //     numReviews: Math.floor(Math.random() * 100),
-        //     description: "test",
-        // }
     }
 
     return (
@@ -54,6 +53,8 @@ function ProductListScreen() {
             </Row>
 
             {LoadingCreate && <Loader />}
+
+            {LoadingDelete && <Loader />}
 
             {isLoading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                 <>
