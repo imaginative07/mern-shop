@@ -10,7 +10,7 @@ import Paginate from '../components/Paginate';
 
 function HomeScreen() {
 
-    const { pageNumber } = useParams();
+    const { pageNumber, keyword } = useParams();
 
     // const [products, setProducts] = useState([]);
 
@@ -22,7 +22,7 @@ function HomeScreen() {
     //     fetchProducts();
     // }, []);
 
-    const { data, isLoading, error } = useGetProductQuery({ pageNumber });
+    const { data, isLoading, error } = useGetProductQuery({ keyword, pageNumber });
 
   return (
     <>
@@ -36,7 +36,7 @@ function HomeScreen() {
                 </Col>
             ))}
         </Row>
-        <Paginate pages={data.pages} page={data.page} />
+        <Paginate pages={data.pages} page={data.page} keyword={keyword ? keyword : ''} />
         </>
         )}
 

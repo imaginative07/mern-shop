@@ -7,9 +7,12 @@ import { protectRoute, admin } from '../middleware/authMiddleware.js';
 router.get('/', async (req, res) => {
     const pageSize = 8;
     const page = Number(req.query.pageNumber) || 1;
-    const count = await Product.countDocuments();
+    
+    const keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' } } : {};
 
-    const products = await Product.find({})
+    const count = await Product.countDocuments({ ...keyword });
+
+    const products = await Product.find({...keyword})
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
@@ -49,8 +52,11 @@ router.post('/', protectRoute, admin, asyncHandler(async (req, res) => {
 }));
 
 router.put('/:id', protectRoute, admin, asyncHandler(async (req, res) => {
+    
     const { name, price, description, image, brand, category, countInStock } = req.body;
+    
     const product = await Product.findById(req.params.id);
+    
     if(product){
         product.name = name;
         product.price = price;
@@ -66,6 +72,7 @@ router.put('/:id', protectRoute, admin, asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error('Product not found');
     }
+
 }));
 
 router.delete('/:id', protectRoute, admin, asyncHandler(async (req, res) => {
