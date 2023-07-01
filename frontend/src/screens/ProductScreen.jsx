@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { addToCart } from '../slices/cartSlice';
 import { toast } from 'react-toastify';
+import Meta from '../components/Meta';
 // import axios from 'axios';
 
 const ProductScreen = () => {
@@ -72,6 +73,7 @@ const ProductScreen = () => {
       
     {isLoading ? (<Loader />) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (
     <>
+      <Meta title={product.name} />
       <Row>
         <Col md={5}>
           <Image src={product.image} alt={product.name} fluid />

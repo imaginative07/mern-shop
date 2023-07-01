@@ -18,7 +18,7 @@ function ProductEditScreen() {
     const [countInStock, setCountInStock] = useState(0);
     const [description, setDescription] = useState('');
 
-    const { data: product, isloading, refetch, error } = useGetProductDetailsQuery(productId);
+    const { data: product, isloading, error } = useGetProductDetailsQuery(productId);
 
     const [updateProduct, { isLoading: loadingUpdating }] = useUpdateProductMutation();
 
@@ -102,6 +102,8 @@ function ProductEditScreen() {
                         <Form.Control type='file' className='my-2' label='Choose file' onChange={ uploadFileHandler }>
                         </Form.Control>
                     </Form.Group>
+                    
+                    {loadingUpload && <Loader />}
 
                     <Form.Group controlId='brand' className='my-2'>
                         <Form.Label>Brand</Form.Label>
