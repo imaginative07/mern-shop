@@ -19,6 +19,12 @@ router.get('/', async (req, res) => {
     res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
+// Get top 3 products
+router.get('/top', async (req, res) => {
+    const products = await Product.find({}).sort({ rating: -1 }).limit(3);
+    res.status(200).json(products);
+});
+
 router.get('/:id', asyncHandler( async (req, res) => {
     const product = await Product.findById(req.params.id);
 
