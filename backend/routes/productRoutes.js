@@ -5,7 +5,7 @@ import Product from "../models/productModel.js";
 import { protectRoute, admin } from '../middleware/authMiddleware.js';
 
 router.get('/', async (req, res) => {
-    const pageSize = 4;
+    const pageSize = 8;
     const page = Number(req.query.pageNumber) || 1;
     const count = await Product.countDocuments();
 
